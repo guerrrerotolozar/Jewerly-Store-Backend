@@ -20,9 +20,15 @@
   },
   "license": "ISC",
   "author": "Ronald Zinedine Guerrero Toloza <guerrerotoloza.ro@gmail.com>",
+  "contributors": [
+    "Felipe Cardenas <felipecas097@gmail.com>"
+  ],
   "type": "commonjs",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "^5.1.0"
   }
 }
