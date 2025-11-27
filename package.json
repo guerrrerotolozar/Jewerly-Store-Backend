@@ -21,12 +21,13 @@
   "license": "ISC",
   "author": "Ronald Zinedine Guerrero Toloza <guerrerotoloza.ro@gmail.com>",
   "contributors": [
-    "Felipe Cardenas <felipecas097@gmail.com>"
+    "Felipe Cardenas <felipecas097@gmail.com>",
+    "Juan Carlos Jimenez Gutierrez <jangojes@gmail.com>"
   ],
   "type": "commonjs",
   "main": "index.js",
   "scripts": {
-    "dev": "node --watch index.js"
+    "dev": "node --watch ./src/index.js"
   },
   "dependencies": {
     "express": "^5.1.0"
