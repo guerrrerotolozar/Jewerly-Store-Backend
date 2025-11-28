@@ -1,15 +1,11 @@
 const express = require("express");         // Importacion
+const dbConnection = require ( './config/mongo.config.js')
+
+
 const app = express();                      // Invocando core Express
 const PORT = 3000;   
 
-
-app.get('/health', (req, res) => {
-    const health = [
-        {name:"ronald", deport:"natacion"},
-        {name:"felipe", deport:"ciclismo"}
-    ]
-    res.json(health)
-});
+dbConnection();
 
 // Middleware Express
 
@@ -18,5 +14,5 @@ app.use('/api/v1/user', require('./routes/user.route.js'/*,'./routes/products.ro
 app.use('/api/v1/product', require('./routes/products.route.js'))
 
 app.listen(PORT, () => {
-    console.log(`Server running on http://localhost:${PORT}/health`)
+    console.log(`Server running on http://localhost:${PORT}/api/v1/user`)
 });
