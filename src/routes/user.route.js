@@ -1,25 +1,18 @@
-import express from 'express' 
+import express, { json } from 'express' 
 
 const router = express.Router();
 
-router.get( '/', ( req, res ) => {
-    res.json({ msg: 'Obtiene todos los usuarios' });
-} );
 
 router.post( '/', ( req, res ) => {
-    res.json({ msg: 'Crear un usuario' });
-} );
+    const data = req.body;           //extraer el cuerpo de la paeticion
 
-router.put( '/', ( req, res ) => {
-    res.json({ msg: 'Actualiza todos las propiedades del usuario' });
-} );
+    console.log(data)
 
-router.patch( '/', ( req, res ) => {
-    res.json({ msg: 'Actualiza parcialmente 1 o todas las propiedades del usuario' });
-} );
+    res.json({
+        msg: 'crear usuario',
+        data                        //Nueva forma    para evitar poner el valor tambien 
+    })
 
-router.delete( '/', ( req, res ) => {
-    res.json({ msg: 'Elimina un usuario' });
 } );
 
 // router.get('/alo', (req, res) => {
