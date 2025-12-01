@@ -1,23 +1,26 @@
-import express from "express";
+import express from 'express';  //importacion
+import dbConnection from './config/mongo.config.js';
+import userRoute from './routes/user.route.js';
+import productsRoute from './routes/products.route.js';
 
-import dbConnection from './config/mongo.config.js'
-import userRoute from './routes/user.route.js'
-import productRoute from './routes/products.route.js'
-
-const app = express();                      // Invocando core Express
-const PORT = 3000;   
+const app = express(); //invocando core
+const PORT = 3000;
 
 dbConnection();
 
-// Middleware Express
+app.get("/health", (req, res) => {
+  res.json({
+    weight: "180 lb",
+    height: "6.0 ft",
+  });
+});
+// Middlewares Express
+app.use (express.json() );
 
-// app.use('/api/v1/user', require('./routes/user.route.js'/*,'./routes/products.route.js' => no se puede meter 2 en una sola*/))
-// // app.use('/api/v1', require('./routes/products.route.js'))  => preferible poner la direccion directamente y no en el archivo
-// app.use('/api/v1/product', require('./routes/products.route.js'))
-app.use('/api/v1/user', userRoute);
-app.use('/api/v1/product', productRoute);
+app.use("/api/v1/users", userRoute);
+app.use("/api/v1/products", productsRoute);
 
-
+//Lanzando el servidor a la web
 app.listen(PORT, () => {
-    console.log(`Server running on http://localhost:${PORT}/api/v1/user`)
+  console.log(`Server running on http://localhost:${PORT}`);
 });
