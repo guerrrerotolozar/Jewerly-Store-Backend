@@ -46,7 +46,10 @@ const userSchema = new Schema({
     //     type : String,
     //     trim : true
     // }
-},{});
+},{
+    versionKey : false,
+    timestamps: true
+});
 
 const userModel = model(
     'users', // nombre de la lista(coleccion) de datos de los ususarios
