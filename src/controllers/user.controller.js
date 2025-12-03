@@ -1,6 +1,6 @@
 // controlador: se debe encargar de recibir las peticiones y responder a ellas
-import userModel from "../models/User.models.js";
-import { dbDeletUserById, dbGetAllUser, dbGetUserById, dbRegisterUser } from "../services/user.services.js";
+import userModel from "../models/User.model.js";
+import { dbDeletUserById, dbGetAllUser, dbGetUserById, dbRegisterUser } from "../services/user.service.js";
 const registerUser =  async ( req, res ) => {
 
     // Se controla la excepcion que ocurre en el paso 2
