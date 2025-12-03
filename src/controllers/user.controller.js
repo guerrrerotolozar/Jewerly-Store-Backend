@@ -1,7 +1,7 @@
 // controlador: se debe encargar de recibir las peticiones y responder a ellas
 import userModel from "../models/User.models.js";
-import { dbGetAllUser, dbGetUserById, dbRegisterUser } from "../services/user.services.js";
-const createUser =  async ( req, res ) => {
+import { dbDeletUserById, dbGetAllUser, dbGetUserById, dbRegisterUser } from "../services/user.services.js";
+const registerUser =  async ( req, res ) => {
 
     // Se controla la excepcion que ocurre en el paso 2
     try{
@@ -28,7 +28,6 @@ const createUser =  async ( req, res ) => {
         });
     }
 }
-
 const getAllUser = async (req,res ) => {
     //interactuar directamente con la base de datos 
     const users = await dbGetAllUser();
@@ -65,9 +64,25 @@ const getUserById = async (req, res) => {
         
     }
 }
+const deleteUserById = async ( req,res )  => {
+    try {
+        const idUser = req.params.idUser;
+        const userDeleted = await dbDeletUserById (idUser)
+            res.json({
+                userDeleted   
+            });
+        }    
+     catch (error) {
+        console.error ( error);
+        res.json ({
+            msg: 'Error: no se pudo eliminar usuario'
+        });
+    }
+}
     
 export {
-    createUser, 
+    registerUser, 
+    getUserById,
     getAllUser,
-    getUserById
+    deleteUserById
 }
