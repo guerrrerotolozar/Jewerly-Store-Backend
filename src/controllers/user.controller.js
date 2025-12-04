@@ -6,19 +6,19 @@ const registerUser =  async ( req, res ) => {
     // Se controla la excepcion que ocurre en el paso 2
     try{
         //Paso 1: extraer el cuerpo de la peticion
-        const data = req.body;    
+        const inputData = req.body;    
 
         //Mostrar en la consola el cuerpo de la peticion
-        console.log( data);
+        console.log( inputData);
     
         //Paso 2: Registrar los datos usando el userModel
-       const dataRegistered = await dbRegisterUser ( data );   //Registrar los datos en la base de datos
+       const userRegistered = await dbRegisterUser ( inputData );   //Registrar los datos en la base de datos
     
         //Paso 3: Responder al cliente
         res.json({ 
             msg:'create users',
              //data: data,             // Forma tradicional
-             dataRegistered            // ECMAScript 2015 
+             userRegistered           // ECMAScript 2015 
         });
     }   
     catch (error) {
@@ -50,10 +50,10 @@ const getUserById = async (req, res) => {
     try {
         const idUser = req.params.idUser;
     
-       const user = await dbGetUserById(idUser);
+       const userFound = await dbGetUserById(idUser);
     
         res.json({
-            user
+            userFound
         });
         
     } 
@@ -100,8 +100,8 @@ try {
     res.json({
         userUpdated
     });
-    
-} catch (error) {
+  } 
+catch (error) {
     console.error( error );
     res.json({
         msg: 'Error: No pudo actualizar el usuario por ID'
