@@ -41,16 +41,16 @@ const getAllUser = async (req,res ) => {
 catch (error) {
     console.error(error);
     res.json ({
-      msg: 'Error: No se pudo obtener el listado de usuarios'  
+        msg: 'Error: No se pudo obtener el listado de usuarios'  
     });
-  }
+}
 } 
 
 const getUserById = async (req, res) => {
     try {
         const idUser = req.params.idUser;
     
-       const user = await dbGetUserById(idUser);
+        const user = await dbGetUserById(idUser);
     
         res.json({
             user
@@ -74,7 +74,7 @@ const deleteUserById = async ( req,res )  => {
                 userDeleted   
             });
         }    
-     catch (error) {
+    catch (error) {
         console.error ( error);
         res.json ({
             msg: 'Error: no se pudo eliminar usuario'
@@ -82,7 +82,7 @@ const deleteUserById = async ( req,res )  => {
     }
 }
 
- const updateUserById = async (req, res ) => {
+const updateUserById = async (req, res ) => {
 try {
     const inputData = req.body; 
     const idUser = req.params.idUser;
@@ -92,10 +92,10 @@ try {
     //  inputData,                  // Datos a actualizar 
     //  {new: true}// Configuracion 
     // );
-     const userUpdated = await userModel.findOneAndUpdate(
+    const userUpdated = await userModel.findOneAndUpdate(
      {_id: idUser},       // Objeto de consulta debe tener el ID
       inputData            // Datos a actualizar 
-     );
+    );
     
     res.json({
         userUpdated
@@ -106,7 +106,7 @@ try {
     res.json({
         msg: 'Error: No pudo actualizar el usuario por ID'
     });    
-  }
+}
 }   
 export {
     registerUser, 

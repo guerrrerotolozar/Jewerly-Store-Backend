@@ -5,7 +5,7 @@ const dbRegisterUser = async( newUser) => {
 }
 
 const dbGetAllUser = async () => {
-   return  await userModel.find();
+  return  await userModel.find();
 }
 
 const dbGetUserById = async ( _id ) => {
