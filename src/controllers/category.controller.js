@@ -1,6 +1,4 @@
-// controlador: se debe encargar de recibir las peticiones y responder a ellas
-// import categoryModel from "../models/Category.model.js";
-import { dbDeletcategoryById, dbGetAllcategory, dbGetcategoryById, dbRegistercategory } from "../services/category.service.js";
+import { dbRegistercategory, dbGetAllcategory , dbGetcategoryById, dbDeletcategoryById } from "../services/category.service.js";
 const registercategory =  async ( req, res ) => {
 
     // Se controla la excepcion que ocurre en el paso 2

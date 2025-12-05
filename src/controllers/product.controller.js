@@ -1,5 +1,5 @@
-import productModel from "../models/Products.models.js";
-import { dbDeletProductById, dbGetAllProducts, dbGetProductsById, dbRegistedProduct } from "../services/products.services.js";
+import productModel from "../models/Product.model.js";
+import { dbDeletProductById, dbGetAllProducts, dbGetProductsById, dbRegistedProduct } from "../services/product.service.js";
 
 const registerProduct = async ( req, res ) => {
     
@@ -84,7 +84,7 @@ const updateProductsById = async ( req, res ) => {
         //  inputData,                  // Datos a actualizar 
         //  {new: true}// Configuracion 
         // );
-        const productsUpdated = await productsModel.findOneAndUpdate(
+        const productsUpdated = await productModel.findOneAndUpdate(
          {_id: idProducts},       // Objeto de consulta debe tener el ID
           inputData            // Datos a actualizar 
         );

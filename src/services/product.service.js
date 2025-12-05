@@ -1,4 +1,4 @@
-import productModel from "../models/Products.models.js";
+import productModel from "../models/Product.model.js";
 
 const dbRegistedProduct = async( newProduct) => {
     return await productModel.create ( newProduct);   // async/await porque el modelo retorna una promesa
