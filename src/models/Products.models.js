@@ -16,10 +16,9 @@ const productSchema = new Schema(
         trim: true 
     },
     category: {
-        type: String,
-        required: true,
-        trim: true,
-        enum: ["anillo", "collar", "pulsera", "aretes", "dije", "otro"],
+        type: Schema.Types.ObjectId,
+        ref: 'category',
+        required: false
     },
     description: { 
         type: String, 
@@ -93,7 +92,7 @@ const productSchema = new Schema(
 );
 
 const productModel = model(
-    'products', // nombre de la lista(coleccion) de datos de los ususarios
+    'product', // nombre de la lista(coleccion) de datos de los ususarios
     productSchema // nombre del esquema asociado al modelo 
 
 );
