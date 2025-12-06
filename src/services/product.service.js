@@ -5,11 +5,11 @@ const dbRegistedProduct = async( newProduct) => {
 }
 
 const dbGetAllProducts = async () => {
-    return  await productModel.find();
+    return  await productModel.find({ isActive: true });
 }
 
 const dbGetProductsById = async ( _id ) => {
-    return await productModel.findOne({_id }); 
+    return await productModel.findOne({_id, isActive: true }); 
 }
 
 const dbDeletProductById = async (_id ) => {

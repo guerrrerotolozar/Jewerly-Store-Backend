@@ -5,11 +5,11 @@ const dbRegisterUser = async( newUser) => {
 }
 
 const dbGetAllUser = async () => {
-  return  await userModel.find();
+  return  await userModel.find({ isActive: true });
 }
 
 const dbGetUserById = async ( _id ) => {
-  return await userModel.findOne({_id }); 
+  return await userModel.findOne({_id, isActive: true }); 
 }
 
 const dbDeletUserById = async (_id ) => {

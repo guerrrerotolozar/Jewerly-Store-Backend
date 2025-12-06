@@ -22,5 +22,5 @@ app.use('/api/v1/category', categoryRoute);
 
 
 app.listen(PORT, () => {
-    console.log(`Server running on http://localhost:${PORT}/api/v1/user`)
+    console.log(`Server running on http://localhost:${PORT}/api/v1`)
 });

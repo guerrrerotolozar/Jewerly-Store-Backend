@@ -5,7 +5,12 @@ const dbRegistercategory = async( newcategory) => {
 }
 
 const dbGetAllcategory = async () => {
-    return  await categoryModel.find();
+    // return  await categoryModel.find().populate('parent');
+
+    return await categoryModel
+        .find({ isActive: true })          // solo activas (opcional)
+        .select('name slug parent isActive') // selecciona solo lo necesario
+        .sort({ name: 1 });               // 1 = ascendente
 }
 
 const dbGetcategoryById = async ( _id ) => {

@@ -11,7 +11,7 @@ const categorySchema = new Schema(
             type: String,
             required: false,
             trim: true
-        },
+        },  
         // Para jerarquía: referencia a otra categoría (ej: "anillos de oro" apunta a "anillos")
         parent: {
             type: Schema.Types.ObjectId,
@@ -23,24 +23,12 @@ const categorySchema = new Schema(
             type: String,
             required: false,
             trim: true,
-            unique: true // Para evitar duplicados en URLs
+            unique: true
         },
-        // Para activar/desactivar (como en productos)
         isActive: {
             type: Boolean,
             default: true
-        },
-        // Imagen opcional para la categoría
-        image: {
-            type: String,
-            required: false,
-            trim: true
-        },
-        // Lista de productos en esta categoría (referencias)
-        // products: [{
-        //     type: Schema.Types.ObjectId,
-        //     ref: 'product' // Asumiendo que tu modelo de producto se llama 'Product'
-        // }]
+        }
     },
     {
         versionKey: false,
@@ -48,9 +36,9 @@ const categorySchema = new Schema(
     }
 );
 
-// Crear el modelo
+
 const categoryModel = model(
-    'category', // Nombre de la colección (puedes cambiarlo si quieres)
+    'category',
     categorySchema
 );
 

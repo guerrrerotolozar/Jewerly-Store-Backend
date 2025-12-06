@@ -28,8 +28,8 @@ const registercategory =  async ( req, res ) => {
 }
 const getAllcategory = async (req,res ) => {
     //interactuar directamente con la base de datos 
-    const categorys = await dbGetAllcategory();
     try {
+        const categorys = await dbGetAllcategory();
 
     res.json({
         msg: 'Obtiene todos los usuarios', 
