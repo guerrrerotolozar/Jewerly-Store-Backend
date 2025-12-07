@@ -1,29 +1,27 @@
-import collectionModel from "../models/collection.model.js"
-// El servicio: se debe encargar solo de la comunicacion directa con la base de datos 
-const dbRegistercollection = async( newcollection) => {
-  return await collectionModel.create ( newcollection);   // async/await porque el modelo retorna una promesa
-}
+import collectionModel from '../models/collection.model.js';
 
-const dbGetAllcollection = async () => {
-    // return  await collectionModel.find().populate('parent');
+const dbRegisterCollection = async (newCollection) => {
+    return await collectionModel.create(newCollection);
+};
 
+const dbGetAllCollections = async () => {
     return await collectionModel
-        .find({ isActive: true })          // solo activas (opcional)
-        .select('name slug parent isActive') // selecciona solo lo necesario
-        .sort({ name: 1 });               // 1 = ascendente
-}
+        .find({ isActive: true })
+        .select('name slug parent isActive')
+        .sort({ name: 1 });
+};
 
-const dbGetcollectionById = async ( _id ) => {
-    return await collectionModel.findOne({_id }); 
-}
+const dbGetCollectionById = async (_id) => {
+    return await collectionModel.findOne({ _id });
+};
 
-const dbDeletcollectionById = async (_id ) => {
-    return await collectionModel.findByIdAndDelete({_id})
-}
+const dbDeleteCollectionById = async (_id) => {
+    return await collectionModel.findByIdAndDelete({ _id });
+};
 
 export {
-    dbRegistercollection,
-    dbGetAllcollection,
-    dbGetcollectionById,
-    dbDeletcollectionById
-}
+    dbRegisterCollection,
+    dbGetAllCollections,
+    dbGetCollectionById,
+    dbDeleteCollectionById,
+};

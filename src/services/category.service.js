@@ -1,29 +1,28 @@
-import categoryModel from "../models/Category.model.js"
-// El servicio: se debe encargar solo de la comunicacion directa con la base de datos 
-const dbRegistercategory = async( newcategory) => {
-  return await categoryModel.create ( newcategory);   // async/await porque el modelo retorna una promesa
-}
+import categoryModel from '../models/Category.model.js';
 
-const dbGetAllcategory = async () => {
-    // return  await categoryModel.find().populate('parent');
+// El servicio se encarga de la comunicación directa con la base de datos
+const dbRegisterCategory = async (newCategory) => {
+    return await categoryModel.create(newCategory);
+};
 
+const dbGetAllCategories = async () => {
     return await categoryModel
-        .find({ isActive: true })          // solo activas (opcional)
+        .find({ isActive: true }) // solo activas (opcional)
         .select('name slug parent isActive') // selecciona solo lo necesario
-        .sort({ name: 1 });               // 1 = ascendente
-}
+        .sort({ name: 1 }); // 1 = ascendente
+};
 
-const dbGetcategoryById = async ( _id ) => {
-    return await categoryModel.findOne({_id }); 
-}
+const dbGetCategoryById = async (_id) => {
+    return await categoryModel.findOne({ _id });
+};
 
-const dbDeletcategoryById = async (_id ) => {
-    return await categoryModel.findByIdAndDelete({_id})
-}
+const dbDeleteCategoryById = async (_id) => {
+    return await categoryModel.findByIdAndDelete({ _id });
+};
 
 export {
-    dbRegistercategory,
-    dbGetAllcategory,
-    dbGetcategoryById,
-    dbDeletcategoryById
-}
+    dbRegisterCategory,
+    dbGetAllCategories,
+    dbGetCategoryById,
+    dbDeleteCategoryById
+};

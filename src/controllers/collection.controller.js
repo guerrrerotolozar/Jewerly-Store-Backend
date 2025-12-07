@@ -1,113 +1,99 @@
-import collectionModel from "../models/collection.model.js";
-import { dbDeletcollectionById, dbGetAllcollection, dbGetcollectionById, dbRegistercollection } from "../services/collection.services.js";
+import {
+    dbDeleteCollectionById,
+    dbGetAllCollections,
+    dbGetCollectionById,
+    dbRegisterCollection,
+} from '../services/collection.services.js';
 
-const registercollection = async ( req, res ) => {
-    
-    try{
-        const inputData = req.body;    
+const registerCollection = async (req, res) => {
+    try {
+        const inputData = req.body;
+        console.log(inputData);
 
-        console.log( inputData);
-            
-       const collectionRegistered = await dbRegistercollection ( inputData );   //Registrar los datos en la base de datos
-            
-        res.json({ 
-            msg:'create collection',
-             //data: data,             // Forma tradicional
-             collectionRegistered           // ECMAScript 2015 
+        const collectionRegistered = await dbRegisterCollection(inputData);
+
+        res.status(201).json({
+            msg: 'Colección creada correctamente',
+            collection: collectionRegistered,
         });
-    }   
-    catch (error) {
-        console.error( error );
-        res.json({
-            msg: 'Error: No se pudo crear el collection'
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({
+            msg: 'Error: no se pudo crear la colección',
+            error: error.message,
         });
     }
-}
-const getAllcollection = async ( req,res ) => {
-    const collections = await dbGetAllcollection ();
-    try {
+};
 
-    res.json({
-        msg: 'Obtiene todos los collection', 
-        collections
-    });
-}
-catch (error) {
-    console.error(error);
-    res.json ({
-        msg: 'Error: No se pudo obtener el listado de collection'  
-    });
-}
-}
-
-const getcollectionById = async (req,res) => {
+const getAllCollections = async (req, res) => {
     try {
-        const idcollections = req.params.idcollections;
-    
-        const collectionFound = await dbGetcollectionById(idcollections);
-    
-        res.json({
-            collectionFound
-        });        
-    } 
-    catch (error) {
-        console.error( error );
-        res.json({
-            msg: 'Error: No pudo obtener collectiono por ID'
-        });    
+        const collections = await dbGetAllCollections();
+
+        res.status(200).json({
+            msg: 'Lista de colecciones',
+            data: collections,
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({
+            msg: 'Error: no se pudieron obtener las colecciones',
+            error: error.message,
+        });
     }
-}
+};
 
-const deletecollectionById = async ( req,res ) => {
+const getCollectionById = async (req, res) => {
     try {
-        const idcollections = req.params.idcollections;
-        const collectionDeleted = await dbDeletcollectionById (idcollections)
-            res.json({
-                collectionDeleted   
+        const { idcollection: idCollection } = req.params;
+
+        const collection = await dbGetCollectionById(idCollection);
+
+        if (!collection) {
+            return res.status(404).json({
+                msg: 'Colección no encontrada',
             });
-        }    
-    catch (error) {
-        console.error ( error);
-        res.json ({
-            msg: 'Error: no se pudo eliminar collection'
+        }
+
+        res.status(200).json({
+            collection,
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({
+            msg: 'Error: no se pudo obtener la colección',
+            error: error.message,
         });
     }
-}
+};
 
-const updatecollectionById = async ( req, res ) => {
+const deleteCollectionById = async (req, res) => {
     try {
-        const inputData = req.body; 
-        const idcollections = req.params.idcollections;
-        
-        // const userUpdated = await userModel.findByIdAndUpdate(
-        //  idUser,                    // ID
-        //  inputData,                  // Datos a actualizar 
-        //  {new: true}// Configuracion 
-        // );
-        const collectionsUpdated = await collectionModel.findOneAndUpdate(
-         {_id: idcollections},       // Objeto de consulta debe tener el ID
-          inputData            // Datos a actualizar 
-        );
-        
-        res.json({
-            collectionsUpdated
-        });
-        } 
-    catch (error) {
-        console.error( error );
-        res.json({
-            msg: 'Error: No pudo actualizar el collectiono por ID'
-        });    
+        const { idcollection: idCollection } = req.params;
+
+        const deleted = await dbDeleteCollectionById(idCollection);
+
+        if (!deleted) {
+            return res.status(404).json({
+                msg: 'Colección no encontrada',
+            });
         }
-    }   
 
-
-
+        res.status(200).json({
+            msg: 'Colección eliminada correctamente',
+            collectionDeleted: deleted,
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({
+            msg: 'Error: no se pudo eliminar la colección',
+            error: error.message,
+        });
+    }
+};
 
 export {
-    registercollection,
-    getAllcollection,
-    getcollectionById,
-    deletecollectionById,
-    updatecollectionById
-}
+    registerCollection,
+    getAllCollections,
+    getCollectionById,
+    deleteCollectionById,
+};

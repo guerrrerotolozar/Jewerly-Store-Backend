@@ -1,14 +1,18 @@
-import {Router} from 'express' 
+import { Router } from 'express';
 
-import { registercategory,getcategoryById ,getAllcategory , deletecategoryById } from '../controllers/category.controller.js';
+import {
+    registerCategory,
+    getCategoryById,
+    getAllCategories,
+    deleteCategoryById,
+} from '../controllers/category.controller.js';
 
 const router = Router();
 
-// DEfinicion de las rutas (Endpoints)
-router.post( '/', registercategory );
-router.get( '/', getAllcategory );
-router.get('/:idcategory', getcategoryById );  //parametrizar la ruta: Crear un parametro en la ruta que funje como variable
-router.delete('/:idcategory', deletecategoryById );
-
+// Definición de las rutas (Endpoints)
+router.post('/', registerCategory);
+router.get('/', getAllCategories);
+router.get('/:idcategory', getCategoryById); // el param de ruta sigue igual
+router.delete('/:idcategory', deleteCategoryById);
 
 export default router;
