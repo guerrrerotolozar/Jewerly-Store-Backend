@@ -13,13 +13,13 @@ const PORT = 3000;
 dbConnection();
 
 // Middleware Express separar las rutas por entidad 
-app.use('/api/v1/auth', authRoute ); //login/register/renewToken 
 
 
 // app.use('/api/v1/user', require('./routes/user.route.js'/*,'./routes/products.route.js' => no se puede meter 2 en una sola*/))
 // // app.use('/api/v1', require('./routes/products.route.js'))  => preferible poner la direccion directamente y no en el archivo
 // app.use('/api/v1/product', require('./routes/products.route.js'))
 app.use( express.json() );
+app.use('/api/v1/auth', authRoute ); //login/register/renewToken 
 app.use('/api/v1/user', userRoute);
 app.use('/api/v1/product', productRoute);
 app.use('/api/v1/category', categoryRoute);

@@ -21,6 +21,7 @@ const registerUser = async (req, res) => {
         //Paso 2: Registrar el usuario 
         const dataRegistered = await dbRegisterUser(inputData);   //Registrar los datos en la base de datos
 
+        
         //Paso 3: Responder al cliente
         res.json({
             msg: 'create users',
