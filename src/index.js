@@ -5,6 +5,7 @@ import userRoute from './routes/user.route.js'
 import productRoute from './routes/products.route.js'
 import categoryRoute from './routes/category.route.js'
 import collectionRoute from './routes/collection.route.js'
+import authRoute from './routes/auth.route.js'
 
 const app = express();                      // Invocando core Express
 const PORT = 3000;   
@@ -21,6 +22,7 @@ dbConnection().then(async () => {
 // // app.use('/api/v1', require('./routes/products.route.js'))  => preferible poner la direccion directamente y no en el archivo
 // app.use('/api/v1/product', require('./routes/products.route.js'))
 app.use( express.json() );
+app.use('/api/v1/auth', authRoute); 
 app.use('/api/v1/user', userRoute);
 app.use('/api/v1/product', productRoute);
 app.use('/api/v1/category', categoryRoute);

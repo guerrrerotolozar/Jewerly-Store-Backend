@@ -1,29 +1,25 @@
-import bcrypt from 'bcrypt';
+import bcrypt from'bcrypt';
+//encriptar la contrasenia 
+const encryptedPassword = (passwordUser) => {
+    const salt = bcrypt.genSaltSync(3); // Generar un fragmento o una cadena aleatoria (el numero indica cuantas veces da uelta para encriptar)
 
-// Encriptar la contrasenia
-const encryptedPassword = ( passwordUser ) => {
-    const salt = bcrypt.genSaltSync(9);      // Generar un fragmento o cadena aleatoria
+    console.log ( salt );       
 
-    console.log( salt );
-
-    // Combinar la clave del usuario, con el salt
-    const hashPassword = bcrypt.hashSync(
-        passwordUser,       // La contrasenia del usuario sin encriptar (123456789)
-        salt                // Cadena que se genera aleatoriamente
+  const hashPassword = bcrypt.hashSync(
+        passwordUser,       // La constrasenia del usuario sin encriptar (123456789)
+        salt
     );
 
-    return hashPassword;    // Devuelve la contrasenia encriptada
+    return hashPassword;   //devuelve la contrasenia encriptada 
 }
-
-// Verificar la contrasenia
+//verificar la constrasenia
 const verifyEncriptedPassword = ( originalPassword, hashPassword ) => {
-    // Return Boolean
-    return bcrypt.compareSync(
-        originalPassword,       // Password Original (envian en body)
-        hashPassword            // Password Base de Datos (hash password)
+   //return Boolean 
+     return bcrypt.compareSync (
+        originalPassword,           //password Original (123456789)
+        hashPassword                //pasword Base de Datos (hash password)
     );
 }
-
 
 export {
     encryptedPassword,
