@@ -14,12 +14,12 @@ const registerUser = async (req, res) => {
         //Paso 2: Registrar los datos usando el userModel
         const dataRegistered = await dbRegisterUser(data);   //Registrar los datos en la base de datos
 
+        const jsonUserFound = userRegistered.toObject();
+
+        delete jsonUserFound.password;
+
         //Paso 3: Responder al cliente
-        res.json({
-            msg: 'create users',
-            //data: data,             // Forma tradicional
-            dataRegistered            // ECMAScript 2015 
-        });
+        res.json({user: jsonUserFound});
     }
     catch (error) {
         console.error(error);
